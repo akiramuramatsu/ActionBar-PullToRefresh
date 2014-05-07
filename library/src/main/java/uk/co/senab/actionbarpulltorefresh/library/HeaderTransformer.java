@@ -78,14 +78,14 @@ public abstract class HeaderTransformer {
      *
      * @return true if the visibility has changed.
      */
-    public abstract boolean showHeaderView();
+    public abstract boolean showHeaderView(boolean fromTouch);
 
     /**
      * Called when the Header View should be made invisible, usually with an animation.
      *
      * @return true if the visibility has changed.
      */
-    public abstract boolean hideHeaderView();
+    public abstract boolean hideHeaderView(boolean fromTouch);
 
     /**
      * Called when the Activity's configuration has changed.

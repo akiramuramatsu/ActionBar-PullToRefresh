@@ -33,11 +33,11 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
-import java.util.WeakHashMap;
-
 import uk.co.senab.actionbarpulltorefresh.library.listeners.HeaderViewListener;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 import uk.co.senab.actionbarpulltorefresh.library.viewdelegates.ViewDelegate;
+
+import java.util.WeakHashMap;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class PullToRefreshAttacher {
@@ -417,7 +417,7 @@ public class PullToRefreshAttacher {
         if (DEBUG) {
             Log.d(LOG_TAG, "onPullStarted");
         }
-        showHeaderView();
+        showHeaderView(true);
         mPullBeginY = y;
     }
 
@@ -449,9 +449,9 @@ public class PullToRefreshAttacher {
         }
     }
 
-    void showHeaderView() {
+    void showHeaderView(boolean fromTouch) {
         updateHeaderViewPosition(mHeaderView);
-        if (mHeaderTransformer.showHeaderView()) {
+        if (mHeaderTransformer.showHeaderView(fromTouch)) {
             if (mHeaderViewListener != null) {
                 mHeaderViewListener.onStateChanged(mHeaderView,
                         HeaderViewListener.STATE_VISIBLE);
@@ -459,8 +459,8 @@ public class PullToRefreshAttacher {
         }
     }
 
-    void hideHeaderView() {
-        if (mHeaderTransformer.hideHeaderView()) {
+    void hideHeaderView(boolean fromTouch) {
+        if (mHeaderTransformer.hideHeaderView(fromTouch)) {
             if (mHeaderViewListener != null) {
                 mHeaderViewListener.onStateChanged(mHeaderView,
                         HeaderViewListener.STATE_HIDDEN);
@@ -546,7 +546,7 @@ public class PullToRefreshAttacher {
         }
 
         // Hide Header View
-        hideHeaderView();
+        hideHeaderView(fromTouch);
     }
 
     private void startRefresh(View view, boolean fromTouch) {
@@ -564,7 +564,7 @@ public class PullToRefreshAttacher {
         mHeaderTransformer.onRefreshStarted();
 
         // Show Header View
-        showHeaderView();
+        showHeaderView(fromTouch);
 
         // Post a runnable to minimize the refresh header
         if (mRefreshMinimize) {

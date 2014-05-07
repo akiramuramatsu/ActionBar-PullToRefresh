@@ -176,7 +176,7 @@ public class DefaultHeaderTransformer extends HeaderTransformer {
     }
 
     @Override
-    public boolean showHeaderView() {
+    public boolean showHeaderView(boolean fromTouch) {
         final boolean changeVis = mHeaderView.getVisibility() != View.VISIBLE;
 
         if (changeVis) {
@@ -194,7 +194,7 @@ public class DefaultHeaderTransformer extends HeaderTransformer {
     }
 
     @Override
-    public boolean hideHeaderView() {
+    public boolean hideHeaderView(boolean fromTouch) {
         final boolean changeVis = mHeaderView.getVisibility() != View.GONE;
 
         if (changeVis) {
