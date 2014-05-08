@@ -12,7 +12,7 @@ def isReleaseBuild() {
 }
 
 allprojects {
-    version = "0.0.2"
+    version = "0.0.4"
     group = "uk.co.senab"
 
     repositories {
